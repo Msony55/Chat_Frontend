@@ -24,7 +24,7 @@
         </ul>
       </div>
     </div>
-    <div class="chat-messages" style="background-image: url('https://preview.redd.it/qwd83nc4xxf41.jpg?width=640&crop=smart&auto=webp&s=e82767fdf47158e80604f407ce4938e44afc6c25');>
+    <div class="chat-messages" [ngStyle]="{"background-image: url('https://preview.redd.it/qwd83nc4xxf41.jpg?width=640&crop=smart&auto=webp&s=e82767fdf47158e80604f407ce4938e44afc6c25');}" >
       <div *ngFor="let msg of messageList" class="left" [ngClass]="{mine: msg.mine}">
         <div class="message">
           <p class="meta">{{ msg.userName }}</p>
