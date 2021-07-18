@@ -1,0 +1,55 @@
+<div class="container">
+  <header class="header">
+    <h1><i class="fas fa-envelope-open-text"></i> CHATBOX</h1>
+    <button mat-button (click)="openDialog()" class="btn">Leave</button>
+  </header>
+  <main class="chat-main">
+    <div class="chat-sidebar">
+      <div class="room">
+        <!-- <fa-icon [icon]="faHouseUser"></fa-icon> -->
+        <h2 id="room-name">Lobby</h2>
+      </div>
+      <hr />
+      <div id="users">
+        <h3><i class="fas fa-users"></i> Users</h3>
+        <ul>
+          <li class="user" *ngFor="let user of userList">
+            <img
+              class="avatar"
+              src="https://www.w3schools.com/w3images/avatar6.png"
+              alt="avatar-image"
+            />
+            <p class="username" id="logs">{{user}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="chat-messages" >
+      <div *ngFor="let msg of messageList" class="left" [ngClass]="{mine: msg.mine}">
+        <div class="message">
+          <p class="meta">{{ msg.userName }}</p>
+          <p class="text">{{ msg.message }}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="chat-form-container">
+    <form id="chat-form" (ngSubmit)="sendMessage()">
+      <input
+        class="form-control"
+        id="msg"
+        name="message"
+        type="text"
+        placeholder="Enter Message"
+        required
+        autocomplete="off"
+        [(ngModel)]="message"
+        style="word-wrap: break-word;
+        word-break: break-all;"
+      />
+      <button class="btn ml-5" type="submit">
+        <i class="fas fa-paper-plane" type="submit"></i>
+      </button>
+    </form>
+  </div>
+</div>

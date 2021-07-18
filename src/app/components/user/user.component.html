@@ -1,0 +1,57 @@
+<div class="show">
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form #userForm="ngForm" (ngSubmit)="Signup()">
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span class="alert alert-success" role="alert" *ngIf="alert">
+          {{sucessMsg}}
+        </span>
+        <span>or use your email for registration</span>
+        <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" required class="form-control" [(ngModel)]="userModel.name" placeholder="Full Name" name="username"/>
+        <small class="text-danger" style="font-size: 10px; margin-right: 70%;" [class.d-none]="name.valid || name.untouched  ">Name is required</small>
+        <input type="text" #userid="ngModel" [class.is-invalid]="userid.invalid && userid.touched" pattern="^[A-Za-z0-9._]{3,15}" required class="form-control" placeholder="User Name" name="userid" [(ngModel)]="userModel.userid" />
+        <small class="text-danger" style="font-size: 10px; margin-right: 60%;" [class.d-none]="userid.valid || userid.untouched ">User Name is required</small>
+        <input type="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required class="form-control" placeholder="Email" name="email" [(ngModel)]="userModel.email"/>
+        <small class="text-danger" style="font-size: 10px; margin-right: 70%;" [class.d-none]="email.valid || email.untouched ">Email is required</small>
+        <input type="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched"  required class="form-control" placeholder="Password" name="password" [(ngModel)]="userModel.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"/>
+        <small class="text-danger" style="font-size: 10px; margin-right:0%;" [class.d-none]="password.valid || password.untouched ">Must contain at least one  number and one uppercase and lowercase letter, and at least 6 </small>
+        <button type="submit" style="margin-top: 10px;" [ngStyle]="{'background-color':userForm.form.invalid && userForm.form.touched? '#243b55cc':'#243b55'}" [disabled]="userForm.form.invalid" >Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form #loginForm ="ngForm" (ngSubmit)="Signin()" >
+        <h1>Sign in</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your account</span>
+        <input type="email"  placeholder="Email"  #email="ngModel" required class="form-control" name="email"  [(ngModel)]="loginModel.email"/>
+        <small class="text-danger" >{{errorMsg}}</small>
+        <input type="password" placeholder="Password" #password="ngModel" required class="form-control"  name="password" [(ngModel)]="loginModel.password"/>
+        <a id="forget" href="" ng-click="value = 1" routerLink="/forget">Forgot your password?</a>
+        <button type ="submit">Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
